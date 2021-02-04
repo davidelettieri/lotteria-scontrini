@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="normalize.css">
+    <link rel="stylesheet" href="skeleton.css">
+    <style>
+        .rotate {
+            transform: rotate(90deg);
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Lotteria degli scontrini</h1>
+    <p>Carica il barcode che hai generato sul sito ufficiale e visita questa pagina per ritrovarlo facilmente. Il
+        sistema funziona offline utilizzando il browser del tuo telefono, puoi anche mettere una scorciatoia sul tuo
+        telefono per accedere direttamente al barcode</p>
+    <div id=carica class="hide">
+        <h3>Carica il file</h3>
+        <input type="file" id="iptImage" onchange="saveImage()" />
+    </div>
+    <div id=mostra class="hide">
+        <input type="button" value="Reset" onclick="reset()">
+        <img id=image class="rotate">
+    </div>
+
+    <script>
+        let carica = document.getElementById('carica');
+        let mostra = document.getElementById('mostra');
+        let iptImage = document.getElementById('iptImage');
+        let image = document.getElementById('image');
+
+        function reset() {
+            image.src = null;
+            localStorage.removeItem('image');
+            loadSavedImage();
+        }
+
+        function loadSavedImage() {
+            let imageB64 = localStorage.getItem("image");
+
+            if (imageB64) {
+                image.src = imageB64;
+                mostra.classList.remove('hide');
+                carica.classList.add('hide');
+            }
+            else {
+                carica.classList.remove('hide');
+                mostra.classList.add('hide');
+            }
+        }
+
+
+        function saveImage() {
+            if (iptImage.files && iptImage.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    localStorage.setItem('image', e.target.result);
+                    loadSavedImage();
+                }
+
+                reader.readAsDataURL(iptImage.files[0]);
+            }
+        }
+
+        loadSavedImage();
+    </script>
+</body>
+
+</html>
