@@ -5,28 +5,28 @@
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="skeleton.css">
     <style>
-        .rotate {
-            transform: rotate(90deg);
-        }
-
         .hide {
             display: none;
+        }
+
+        .d-block {
+            display: block;
         }
     </style>
 </head>
 
 <body>
     <h1>Lotteria degli scontrini</h1>
-    <p>Carica il barcode che hai generato sul sito ufficiale e visita questa pagina per ritrovarlo facilmente. Il
-        sistema funziona offline utilizzando il browser del tuo telefono, puoi anche mettere una scorciatoia sul tuo
-        telefono per accedere direttamente al barcode</p>
     <div id=carica class="hide">
+        <p>Carica il barcode che hai generato sul sito ufficiale e visita questa pagina per ritrovarlo facilmente. Il
+            sistema funziona offline utilizzando il browser del tuo telefono, puoi anche mettere una scorciatoia sul tuo
+            telefono per accedere direttamente al barcode</p>
         <h3>Carica il file</h3>
         <input type="file" id="iptImage" onchange="saveImage()" />
     </div>
     <div id=mostra class="hide">
-        <input type="button" value="Reset" onclick="reset()">
-        <img id=image class="rotate">
+        <input type="button" value="Reset" class="d-block" onclick="reset()"><br/>
+        <img id=image>
     </div>
 
     <script>
@@ -46,11 +46,6 @@
 
             if (imageB64) {
                 image.src = imageB64;
-                let height = image.height;
-                let width = image.width;
-                let leftMargin = (width - height) / 2;
-                let topMargin = (height - width) / 2;
-                image.style.margin = leftMargin.toString() + " " + topMargin.toString() + ";";
                 mostra.classList.remove('hide');
                 carica.classList.add('hide');
             }
