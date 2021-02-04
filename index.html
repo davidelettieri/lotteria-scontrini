@@ -12,6 +12,10 @@
         .d-block {
             display: block;
         }
+
+        .barcode {
+            width: 100%;
+        }
     </style>
 </head>
 
@@ -25,8 +29,8 @@
         <input type="file" id="iptImage" onchange="saveImage()" />
     </div>
     <div id=mostra class="hide">
-        <input type="button" value="Reset" class="d-block" onclick="reset()"><br/>
-        <img id=image>
+        <input type="button" value="Reset" class="d-block" onclick="reset()"><br />
+        <img id=image class="barcode">
     </div>
 
     <script>
