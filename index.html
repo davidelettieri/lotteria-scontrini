@@ -46,6 +46,11 @@
 
             if (imageB64) {
                 image.src = imageB64;
+                let height = image.height;
+                let width = image.width;
+                let leftMargin = (width - height) / 2;
+                let topMargin = (height - width) / 2;
+                image.style.margin = leftMargin.toString() + " " + topMargin.toString() + ";";
                 mostra.classList.remove('hide');
                 carica.classList.add('hide');
             }
