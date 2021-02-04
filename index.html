@@ -14,9 +14,13 @@
         }
 
         .barcode {
-            margin: 0 !important;
+            margin: -10px !important;
             padding: 0 !important;
             width: 100%;
+        }
+
+        body {
+            padding: 10px;
         }
     </style>
 </head>
@@ -42,6 +46,7 @@
         let image = document.getElementById('image');
 
         function reset() {
+            iptImage.value = null;
             image.src = null;
             localStorage.removeItem('image');
             loadSavedImage();
